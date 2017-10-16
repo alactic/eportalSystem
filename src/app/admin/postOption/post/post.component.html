@@ -1,0 +1,110 @@
+<div>
+  <div>
+    <div class="alert alert-success" *ngIf="successMessage">{{successMessage}}</div>
+    <div class="col-md-12 status">
+      <!--post component-->
+      <form #f="ngForm" (ngSubmit)="onProceed(f)" *ngIf="!onPostType">
+        <div class="form-group">
+          <label class="label label-primary">POST TYPE</label>
+          <select class="form-control" [(ngModel)]="post_type" name="post_type" (change)="onPost()" required>
+            <option></option>
+            <option>HOME PAGE</option>
+            <option>NAVIGATION PAGE</option>
+          </select>
+        </div>
+      </form>
+
+      <!--when the home option is selected-->
+      <form #f="ngForm" (ngSubmit)="onSubmitPost(f)" *ngIf="chooseHome">
+        <div class="form-group">
+          <label class="label label-primary">POST OPTIONS</label>
+          <select class="form-control" [(ngModel)]="post" name="post" (change)="onSelectPostType()" required>
+            <option></option>
+            <option>EVENTS</option>
+            <option>ADMISSION</option>
+            <option>TIMETABLE</option>
+            <option>ACADEMIC</option>
+            <option>IMAGE SLIDE</option>
+            </select>
+        </div>
+        <div class="form-group" >
+          <label class="label label-primary">DESCRIPTIVE TEXT</label>
+          <textarea name="article"  [(ngModel)]="article" class="form-control" maxlength="200" cols="15" rows="10" required></textarea>
+        </div><br>
+        <span *ngIf="slideImage">
+              <div>
+                <label class="label label-default">UPLOAD IMAGE</label>
+                <input type="file" id="myImage"  name="myImage" [(ngModel)]="myImage" (change)="onAddImage(file.files)" #file>
+              </div>
+          </span>
+        <br>
+        <button type="submit" class="btn btn-primary" [disabled]="!(f.form.valid) || selectFileOption">
+          <span>Submit</span>
+          <span *ngIf="!(f.form.valid) && selectFileOption"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;font-size: 3em"></i></span>
+        </button>
+        <span *ngIf="selectFileOption">
+           Image Upload progress:<progress value="{{byteResult}}" max="100"></progress>{{byteResult}}%
+        </span>
+      </form>
+      <!--end of home-->
+
+
+      <form #f="ngForm" (ngSubmit)="onProceed(f)" *ngIf="choosePost">
+        <div class="form-group">
+          <label class="label label-primary">POST OPTIONS</label>
+          <select class="form-control" [(ngModel)]="post" name="post" required>
+            <option></option>
+            <option>GENERAL INFORMATION</option>
+            <option>STUDENTS</option>
+            <option>STAFF</option>
+            <option>EVENTS</option>
+            <option>ADMISSION</option>
+            <option>TIMETABLE</option>
+            <option>SPORTS</option>
+            <option>FACILITIES</option>
+            <option>ACADEMIC</option>
+            <option>ADMINISTRATION</option>
+            <option>NEWS</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" [disabled]="!f.form.valid"
+                (click)="showPost=!showPost">PROCEED</button>
+      </form>
+
+      <!--end of home page-->
+
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="showPost">
+        <h2>{{post}}</h2>
+        <h4>{{label}}</h4>
+        <div class="form-group">
+          <label class="label label-primary">TOPIC HEADER</label>
+          <input type="text" name="heading" placeholder="Enter your topic header" maxlength="30" [(ngModel)]="heading" class="form-control" required>
+          <span class="note">NOTE: MUST NOT EXCEED 30 CHARACTERS</span>
+        </div>
+        <div>
+          <label class="label label-default">UPLOAD IMAGE</label>
+          <input type="file" id="myImg" name="myImg" [(ngModel)]="myImg" (change)="onAddImage(file1.files)" #file1>
+          <span *ngIf="selectFileOption">
+             Image Upload progress:<progress value="{{byteResult}}" max="100"></progress>{{byteResult}}%
+          </span>
+        </div>
+        <div>
+          <label class="label label-default">UPLOAD FILE</label>
+          <input type="file" id="myfile"  name="myfile" [(ngModel)]="myfile" (change)="onAddFile(file2.files)" #file2>
+          <span *ngIf="selectFileOptionFile">
+             Image Upload progress:<progress value="{{byteResultFile}}" max="100"></progress>{{byteResultFile}}%
+          </span><br>
+          <span class="note">IF YOU HAVE ANY FILE</span>
+        </div>
+        <div class="form-group" >
+          <label class="label label-primary">ARTICLE</label>
+          <textarea name="article"  [(ngModel)]="article" class="form-control" cols="20" rows="10" required></textarea>
+        </div><br>
+        <button type="submit" class="btn btn-primary" [disabled]="!(f.form.valid) || !submitDisable">
+          <span>Submit</span>
+          <span *ngIf="!(f.form.valid) && selectFileOptionFile"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;font-size: 3em"></i></span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

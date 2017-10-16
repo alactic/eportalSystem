@@ -1,0 +1,14 @@
+<div style="padding:50px">
+  <div class="row">
+     <div class="col-md-12">
+         <div style="font-size: 20px; text-align: center"><span class="label label-success">{{responseMessage}}</span></div>
+         <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+             <div class="form-group" style="width: 50%">
+                <label class="label label-primary">ADD NEW FACULTY</label>
+                <input type="text" name="addfaculty" [(ngModel)]="addfaculty" placeholder="FACULTY NAME" class="form-control" required>
+             </div>
+           <button class="btn btn-primary" [disabled]="!f.form.valid">ADD</button>
+         </form>
+     </div>
+  </div>
+</div>

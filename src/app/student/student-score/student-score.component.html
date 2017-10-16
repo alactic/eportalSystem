@@ -1,0 +1,36 @@
+<div *ngIf="emptyScore" class="alert alert-warning" style="text-align: center; font-weight: bold">
+  {{emptyScore}}
+</div>
+<div class="row" *ngIf="!emptyScore">
+      <div class="col-md-12 score">
+        <h4><label class="label label-primary" style="text-align: center" >Scores</label></h4>
+      </div>
+
+    <div style="padding: 20px">
+    <table  class="table table-stripped" id="myTable">
+      <thead>
+      <tr>
+        <th>NOTE</th>
+        <th>COURSE</th>
+        <th>SCORE</th>
+        <th>DEPARTMENT</th>
+        <th>DATE OF SCORE</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let viewall of view_all_assignment">
+        <td>{{viewall.note}}</td>
+        <td>{{viewall.course}}</td>
+        <td>{{viewall.score}}</td>
+        <td>{{viewall.department}}</td>
+        <td>{{viewall.created_at}}</td>
+         </tr>
+      </tbody>
+    </table>
+    </div>
+    <div *ngIf="!view_all_assignment">
+      <div style="text-align: center"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;
+                 font-size: 10em"></i></div>
+    </div>
+</div>

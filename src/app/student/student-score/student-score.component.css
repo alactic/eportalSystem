@@ -1,0 +1,13 @@
+.row{
+    margin: 0;
+    padding: 10px;
+}
+
+.label{
+    padding:5px;
+    margin-top:5px;
+    cursor: pointer;
+}
+.download{
+    width: 8px;
+}

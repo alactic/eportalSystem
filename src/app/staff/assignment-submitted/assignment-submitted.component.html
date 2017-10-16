@@ -1,0 +1,88 @@
+<div style="float: right; margin: 10px">
+  <button class="btn btn-default" (click)="onShow(); table()" *ngIf="!showDetail">SHOW HIDDEN SUBMISSIONS</button>
+</div>
+<div class="col-md-12">
+    <!--VIEW ASSIGNMENT-->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">LECTURE NOTE DETAILS</h4>
+          </div>
+          <div class="modal-body" style="height: 300px"   *ngIf="getStaffDetails">
+            <div class="col-md-8">
+                  <div class="modal_item"><label class="label" style="color:#2b2b2b;">NAME</label></div>
+                  <div><span class="label label-primary">{{getStaffDetails.firstname}}  {{getStaffDetails.middlename}}  {{getStaffDetails.surname}}</span>
+                  </div>
+                  <div class="modal_item"><label class="label" style="color:#2b2b2b">REG. NO</label></div>
+                  <div> <span class="label label-primary">{{getStaffDetails.regno}}</span>
+                  </div>
+                  <div class="modal_item"><label class="label" style="color:#2b2b2b">EMAIL</label></div>
+                  <div> <span class="label label-primary">{{getStaffDetails.email}}</span>
+                  </div>
+                  <div class="modal_item"><label class="label" style="color:#2b2b2b">COURSE</label></div>
+                  <div><span class="label label-primary">{{getStaffDetails.course}}</span>
+                  </div>
+                  <div class="modal_item"><label class="label" style="color:#2b2b2b">DEPARTMENT</label></div>
+                  <div><span class="label label-primary">{{getStaffDetails.department}}</span>
+                  </div>
+                  <div class="btn btn-success" style="margin: 5% 0 0 25%;" (click)="onDownload(getStaffDetails.solution)">
+                    download here:<i class="fa fa-download" aria-hidden="true"></i>
+                  </div>
+            </div>
+            <div class="col-md-4">
+              <form #f="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <input type="number"  [(ngModel)]="score" name="score" required class="form-control" style="height: 100%; font-size: 20px">
+                </div>
+                <button class="btn btn-primary" [disabled]="!f.form.valid">SCORE</button>
+              </form>
+            </div>
+            <div class="modal-footer col-md-12">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <!--LIST OF ASSIGMNENTS-->
+  <div>
+    <table  class="table table-stripped" id="myTable">
+      <thead>
+      <tr>
+        <th>NOTE</th>
+        <th>COURSE</th>
+        <th>SCORE</th>
+        <th>DEPARTMENT</th>
+        <th>DATE OF SUBMISSION</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let viewall of view_all_assignment">
+        <td>{{viewall.note}}</td>
+        <td>{{viewall.course}}</td>
+        <td>{{viewall.score}}</td>
+        <td>{{viewall.department}}</td>
+        <td>{{viewall.created_at}}
+        <td><a class="btn btn-primary" (click)="onView(viewall.id);showDetail=!showDetail;" data-toggle="modal" data-target="#myModal">VIEW</a></td>
+        <td><a class="btn btn-primary" (click)="onDownload(viewall.solution)"><i  class="fa fa-download" aria-hidden="true"></i></a></td>
+        <td><a class="btn btn-danger" (click)="onHide(viewall.id); table()" aria-label="Delete">
+          HIDE
+        </a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!view_all_assignment">
+    <div style="text-align: center"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;
+	         font-size: 10em"></i></div>
+  </div>
+</div>

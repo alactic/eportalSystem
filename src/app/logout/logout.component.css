@@ -1,0 +1,20 @@
+nav{
+    margin: 0;
+    background: #000;
+    padding: 0;
+    border: 0
+}
+
+.navbar-nav{
+    float:right
+}
+li{
+    background: #ffffff;
+    font-weight: bold;
+    border-radius: 30px;
+}
+li a:hover{
+    background: dimgray;
+    color: #ffffff;
+    border-radius: 30px;
+}

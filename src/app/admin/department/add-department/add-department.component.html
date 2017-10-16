@@ -1,0 +1,22 @@
+<div style="padding:50px">
+  <div class="row">
+    <div class="col-md-12">
+      <div style="font-size: 20px; text-align: center"><span class="label label-success">{{responseMessage}}</span></div>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="form-group">
+          <label class="label label-primary">ADD NEW DEPARTMENT</label>
+          <input type="text" name="name" [(ngModel)]="name" placeholder="DEPARTMENT" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">ASSIGN FACULTY</label>
+          <select [(ngModel)]="selectFaculty" name="selectFaculty" class="form-control">
+            <option></option>
+            <option *ngFor="let editfacu of editfaculty">{{editfacu.facultyName}}</option>
+
+          </select>
+        </div>
+        <button class="btn btn-primary" [disabled]="!f.form.valid">ADD</button>
+      </form>
+    </div>
+  </div>
+</div>

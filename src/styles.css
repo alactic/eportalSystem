@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+table thead{
+    background:dimgrey;
+    color:#fff
+}
+
+.label .label-danger{
+    cursor: pointer;
+}
+
+.label .label-primary{
+    cursor: pointer
+}
+
+.table{
+    font-size: 14px;
+}

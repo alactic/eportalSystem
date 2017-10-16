@@ -1,0 +1,32 @@
+ul{
+    list-style: none;
+    font-family: "Architects Daughter",aDaughter,"Times New Roman", Verdana, sans-serif;
+}
+
+.imgStyle{
+    height: 80px;
+    width: 20%
+}
+
+.getItem{
+    float: left;
+    color: #ffffff;
+}
+
+.postHeading{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color:whitesmoke;
+    text-decoration: underline;
+
+}
+
+.getItem a{
+    color: #ffffff;
+    cursor: pointer;
+}
+.getItem a:hover{
+    color:crimson;
+    font-weight: bold;
+}

@@ -1,0 +1,60 @@
+<body id="page-top" class="home">
+
+<!-- PAGE WRAP -->
+<div id="page-wrap">
+  <!-- HEADER -->
+  <app-sub-header></app-sub-header>
+  <!-- END / HEADER -->
+
+
+  <!-- LOGIN -->
+  <section id="login-content" class="login-content">
+    <div class="awe-parallax bg-login-content"></div>
+    <div class="awe-overlay"></div>
+    <div class="container">
+      <div class="row">
+
+        <!-- FORM -->
+        <div class="col-xs-12 col-lg-4 pull-right">
+          <div class="form-login">
+            <form class="form-horizontal" #f="ngForm" (ngSubmit)="onLogin(f)">
+              <p class="alert alert-danger" *ngIf="status_error">{{errorMessage}}</p>
+              <h2 class="text-uppercase">staff sign in</h2>
+              <div class="form-email">
+                <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email" [(ngModel)]="email" required #email1="ngModel">
+                <div class="alert alert-danger" *ngIf="email1.errors && (email1.dirty || email1.touched)">
+                  USERNAME IS REQUIRED
+                </div>
+              </div>
+              <div class="form-password">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password" [(ngModel)]="password" required #password1="ngModel">
+                <div class="alert alert-danger" *ngIf="password1.errors && (password1.dirty || password1.touched)">
+                  PASSWORD IS REQUIRED
+                </div>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="check">
+                <label for="check">
+                  <i class="icon md-check-2"></i>
+                  Remember me</label>
+                <a href="#">Forget password?</a>
+              </div>
+              <div class="form-submit-1">
+                <button type="submit" class="mc-btn btn-style-1" [disabled]="!f.form.valid">Sign In</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- END / FORM -->
+
+        <div class="image">
+          <img src="assets/frontpage/images/homeslider/img-thumb.png" alt="">
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- END / LOGIN -->
+</div>
+<app-footer></app-footer>
+</body>

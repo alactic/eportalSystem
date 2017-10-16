@@ -1,0 +1,21 @@
+
+    <ul>
+      <li class="list-head" style="text-align: center">General Information</li>
+      <span *ngFor="let getGen of getGeneral">
+        <li><a  (click)="navigation(getGen.id)">{{getGen.heading}}</a></li>
+      </span>
+    </ul>
+  <ul>
+    <li class="list-head" style="text-align: center">Students</li>
+      <span *ngFor="let getStu of getStudent">
+        <li><a [routerLink]="['/nav', getStu.id]">{{getStu.heading}}</a></li>
+      </span>
+  </ul>
+  <ul>
+    <li class="list-head" style="text-align: center">Staff</li>
+    <span *ngFor="let getStaff of getStaffs">
+        <li><a [routerLink]="['/nav', getStaff.id]">{{getStaff.heading}}</a></li>
+      </span>
+  </ul>
+
+

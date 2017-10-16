@@ -1,0 +1,43 @@
+<div *ngIf="viewUpload" class="alert alert-warning" style="text-align: center; font-weight: bold">
+  {{viewUpload}}
+</div>
+<div class="col-md-12" *ngIf="!viewUpload">
+  <div *ngIf="viewAssignment">
+    <!--VIEW ASSIGNMENT-->
+    <div><label>COURSE</label></div>
+    <div class="label label-primary">{{viewAssignment.course}}</div><br>
+    <div><label>ASSIGNMENT</label></div>
+    <div class="label label-primary">{{viewAssignment.note}}</div><br>
+    <div><label>LEVEL</label></div>
+    <div class="label label-primary">{{viewAssignment.level}}</div><br>
+    <div><label>DEPARTMENT</label></div>
+    <div class="label label-primary">{{viewAssignment.department}}</div><br><br><br>
+  </div>
+  <!--LIST OF ASSIGMNENTS-->
+  <table  class="table table-stripped" id="myTable">
+    <thead>
+    <tr>
+      <th>NOTE3</th>
+      <th>COURSE</th>
+      <th>DATE OF CREATION</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let viewall of view_all_assignment">
+      <td>{{viewall.note}}</td>
+      <td>{{viewall.course}}</td>
+      <td>{{viewall.created_at}}</td>
+      <td><a class="label label-primary" (click)="onDownload(viewall.solution)">download</a></td>
+      <td><a class="label label-danger" (click)="onDelete(viewall.id)" aria-label="Delete">
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      </a></td>
+    </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!view_all_assignment">
+    <div style="text-align: center"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;
+	         font-size: 10em"></i></div>
+  </div>
+</div>

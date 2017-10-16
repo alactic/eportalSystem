@@ -1,0 +1,11 @@
+.status{
+    padding-left:30%;
+    padding-right:30%;
+    padding-bottom:10%;
+    padding-top:0;
+}
+
+.details{
+    float: right;
+    font-size: 15px
+}

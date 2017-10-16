@@ -1,0 +1,72 @@
+<div>
+  <div class="col-md-12">
+      <div *ngIf="errorMessage" class="alart alert-danger message">{{errorMessage}}</div>
+      <div *ngIf="successMessage" class="alart alert-success message">{{successMessage}}</div>
+    <form class="form-inline"  #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <div class="form-group">
+            <div><label class="label label-primary">SEMESTER</label></div>
+            <select [(ngModel)]="semester" name="semester" class="form-control" (change)="onselectedSemester(); course=true" required>
+              <option></option>
+              <option>FIRST SEMESTER</option>
+              <option>SECOND SEMESTER</option>
+            </select>
+          </div><br>
+        <div *ngIf="course">
+            <div style="text-align: center" *ngIf="!showCourse">
+               <i class="fa fa-spinner fa-pulse fa-3x fa-fw"  style="color:dodgerblue;font-size: 2em; float:left"></i>
+            </div>
+           <div class="form-group department" *ngIf="showCourse">
+            <div><label class="label label-primary">COURSE</label></div>
+              <select [(ngModel)]="course" name="course" class="form-control"  (change)="onSelectCourse(); getquestion=true" required>
+              <option></option>
+                  <option *ngFor="let course of selectCourses">{{course.course}}</option>
+            </select>
+          </div><br>
+        </div>
+        <div *ngIf="getquestion">
+            <div style="text-align: center" *ngIf="!showQuestion">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"  style="color:dodgerblue;font-size: 2em; float:left"></i>
+            </div>
+            <div class="form-group department" *ngIf="showQuestion">
+                <div><label class="label label-primary">COURSE</label></div>
+                <select [(ngModel)]="question" name="question" class="form-control"  (change)="onSelectAssignment(); showquestion=true" required>
+                    <option></option>
+                    <option *ngFor="let question of getQuestion">{{question.note}}</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div *ngIf="showquestion">
+            <div style="text-align: center" *ngIf="!showDetail">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"  style="color:dodgerblue;font-size: 2em; float:left"></i>
+            </div>
+          <span *ngIf="showDetail">
+              <div class="form-group">
+                 <div><label class="label label-primary">LECTURER EMAIL</label></div>
+                   {{lecturer_email}}
+              </div><br>
+              <div class="form-group">
+                 <div><label class="label label-primary">CREATION DATE</label></div>
+                   {{created}}
+              </div><br>
+              <div class="form-group">
+                 <div><label class="label label-primary">SUBMISSION</label></div>
+                   {{submission}}
+              </div><br>
+              <div class="form-group">
+                  <div *ngIf="showError" class="label label-danger">{{emptyField}}</div>
+                  <div><label class="label label-primary">UPLOAD ASSIGNMENT</label></div>
+                  <input type="file" name="upload" id="upload" [(ngModel)]="upload" (change)="onAddFile(file.files)" #file>
+                          <span *ngIf="selectFileOptionFile">
+                             Image Upload progress:<progress value="{{byteResultFile}}" max="100"></progress>{{byteResultFile}}%
+                          </span>
+              </div><br>
+              <button type="submit" class="btn btn-primary" [disabled]="!(f.form.valid) || !submitDisable">
+                   <span>SUBMIT</span>
+                   <span *ngIf="!(f.form.valid) && selectFileOptionFile"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;font-size: 3em"></i></span>
+              </button>
+      </span>
+        </div>
+    </form>
+  </div>
+</div>

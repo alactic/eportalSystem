@@ -1,0 +1,76 @@
+<div>
+  <div class="col-md-12">
+    <div>
+      <!-- Modal -->
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" *ngIf="viewLectureNote">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">LECTURE NOTE DETAILS</h4>
+            </div>
+            <div class="modal-body" style="height: 250px">
+              <div class="modal_item"><label class="label" style="color:#2b2b2b;">COURSE</label></div>
+              <div><span class="label label-primary">{{viewLectureNote.course}}</span>
+              </div>
+              <div class="modal_item"><label class="label" style="color:#2b2b2b">ASSIGNMENT</label></div>
+              <div> <span class="label label-primary">{{viewLectureNote.note}}</span>
+              </div>
+              <div class="modal_item"><label class="label" style="color:#2b2b2b">LEVEL</label></div>
+              <div> <span class="label label-primary">{{viewLectureNote.level}}</span>
+              </div>
+              <div class="modal_item"><label class="label" style="color:#2b2b2b">DEPARTMENT</label></div>
+              <div><span class="label label-primary">{{viewLectureNote.department}}</span>
+              </div>
+              <div class="btn btn-success" style="margin: 5% 0 0 25%;" (click)="onDownload(viewLectureNote.upload_name)">
+                download here:<i class="fa fa-download" aria-hidden="true"></i>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <!--LIST OF ASSIGMNENTS-->
+    <div>
+      <table class="table table-stripped" id="myTable">
+        <thead>
+        <tr>
+          <th>COURSE</th>
+          <th>ASSIGNMENT</th>
+          <th>LEVEL</th>
+          <th>DEPARTMENT</th>
+          <th>DATE OF CREATION</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let viewall of view_all_LectureNote">
+          <td>{{viewall.course}}</td>
+          <td (click)="onDownload(viewall.upload_name)"  >
+            <i style="margin-left: 20px" class="fa fa-download btn btn-primary" aria-hidden="true"></i>
+          </td>
+          <td>{{viewall.level}}</td>
+          <td>{{viewall.department}}</td>
+          <td>{{viewall.created_at}}</td>
+          <td><a class="btn btn-primary" (click)="onView(viewall.id)" data-toggle="modal" data-target="#myModal">VIEW</a></td>
+          <td><a class="btn btn-danger" (click)="onDelete(viewall.id)" aria-label="Delete">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          </a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  <div *ngIf="!view_all_LectureNote">
+    <div style="text-align: center"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;
+	         font-size: 10em"></i></div>
+  </div>
+</div>
+</div>

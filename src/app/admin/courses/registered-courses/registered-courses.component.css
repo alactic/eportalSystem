@@ -1,0 +1,22 @@
+.header{
+    text-align: center;
+}
+.row{
+    margin-bottom: 70px;
+}
+.detail{
+    padding:15px;
+    text-align: justify;
+}
+label{
+    font-size: 10px;
+}
+span{
+    text-decoration: underline;
+    font-size: 13px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+a{
+    cursor: pointer;
+}

@@ -1,0 +1,77 @@
+<div style="text-align: center" class="alert alert-danger" *ngIf="responseMessage">{{responseMessage}}</div>
+<div class="section">
+  <form #f="ngForm" (ngSubmit)="onPayfees(f)" *ngIf="!receipt" style="width: 50%">
+    <div class="form-group">
+      <div class="header">
+        <label>Session</label>
+      </div>
+      <select class="form-control thewide" [(ngModel)]="session" name="session" required>
+        <option></option>
+        <option>2015/2016</option>
+        <option>2016/2017</option>
+        <option>2017/2018</option>
+        <option>2018/2019</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <div class="header">
+        <label>Level</label>
+      </div>
+      <select class="form-control thewide" [(ngModel)]="level" name="level" required>
+        <option></option>
+        <option>100</option>
+        <option>200</option>
+        <option>300</option>
+        <option>400</option>
+        <option>500</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <div class="header">
+        <label>PIN</label>
+      </div>
+      <input type="text" name="pin" [(ngModel)]="pin" required class="form-control">
+    </div>
+    <span  style="margin-left: 20%;"> <button type="submit" class="btn btn-primary" [disabled]="!f.form.valid">PAY</button></span>
+  </form>
+
+
+  <!--display of invoice-->
+  <div style="border:1px solid black; border-radius: 5%" *ngIf="editstudent">
+    <form *ngIf="receipt">
+      <div>
+        NAME OF INSTITUTION
+      </div>
+      <div>
+        SCHOOL FEES RECIEPT
+      </div>
+      <div>
+        <label>NAME</label><br>
+        <label>{{editstudent.firstname}} {{editstudent.middlename}} {{editstudent.surname}}</label>
+      </div>
+      <div>
+        <label>REGISTRATION NO.</label><br>
+        <label>{{editstudent.regno}}</label>
+      </div>
+      <div>
+        <label>LEVEL</label><br>
+        <label>{{level}}</label>
+      </div>
+      <div>
+        <label>SESSION</label><br>
+        <label>{{session}}</label>
+      </div>
+      <div>
+        <label>AMOUNT</label><br>
+        <label>{{getFees.amount}}</label>
+      </div>
+      <div>
+        <label>{{getFees.department}}</label>
+      </div>
+      <div>
+        <label>{{getFees.faculty}}</label>
+      </div>
+    </form>
+  </div>
+</div>
+

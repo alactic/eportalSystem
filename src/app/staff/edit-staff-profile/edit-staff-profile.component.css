@@ -1,0 +1,78 @@
+row{
+    padding: 10px;
+}
+
+.col-md-10{
+    margin:0;
+}
+
+.col-md-1{
+    margin: 0
+}
+.container{
+    width: 100%
+}
+.col-sm-5{
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+button{
+    font-size:10px;
+    margin-right:10px;
+    margin-bottom: 20px;
+    margin-top:20px
+}
+
+label span{
+    margin-top:-5px;
+}
+
+label{
+    background: #DEE4EA;
+    width: 148px;
+    margin-left: 10px;
+    padding: 8px;
+    margin: 0;
+    border: 1px #ffffff dotted;
+}
+
+.editform{
+    padding: 8px;
+    font-weight: bold;
+    font-size:13px ;
+    text-transform: uppercase;
+    color: darkslategrey;
+    font-family: Monospaced;
+    border: 1px dotted grey;
+}
+.all_form{
+    border-left: 1px dotted grey;
+    float: left;
+    width: 50%;
+}
+span{
+    cursor: pointer;
+}
+.form-group{
+    margin:0;
+    width: 100%;
+    padding: 0;
+}
+form{
+    width: 50%;
+}
+input{
+    width: 70%;
+    float: right;
+}
+select{
+    width: 70%;
+    float: right;
+}
+.changeImage{
+    background: #ffffff;
+    color:#ffffff;
+}
+input[type="file"] { display: none; }

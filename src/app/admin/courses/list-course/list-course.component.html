@@ -1,0 +1,119 @@
+<div style="padding: 10px">
+  <div class="row">
+    <div class="col-md-12">
+      <div style="font-size: 20px; text-align: center"><span class="label label-success">{{responseMessage}}</span></div>
+      <br>
+
+      <form #f="ngForm" (ngSubmit)="onSubmitEdit(f)" *ngIf="editEdit">
+        <div class="form-group">
+          <label class="label label-primary">COURSE</label>
+          <input type="text" name="course" [(ngModel)]="course"  value="{{course}}" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">COURSE CODE</label>
+          <input type="text" name="coursecode" [(ngModel)]="coursecode" value="{{coursecode}}" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">SEMESTER</label>
+          <select name="semester" [(ngModel)]="semester" class="form-control" required>
+            <option></option>
+            <option>FIRST SEMESTER</option>
+            <option>SECOND SEMESTER</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">COURSE STATUS</label>
+          <select name="status" [(ngModel)]="status" class="form-control" required>
+            <option></option>
+            <option>CORE</option>
+            <option>ELECTIVE</option>
+            <option>REQUIRED</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">CREDIT UNIT</label>
+          <select name="unit" [(ngModel)]="unit" placeholder="CREDIT UNIT" class="form-control" required>
+            <option></option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">LEVEL</label>
+          <select name="level" [(ngModel)]="level" placeholder="LEVEL" class="form-control" required>
+            <option></option>
+            <option>100</option>
+            <option>200</option>
+            <option>300</option>
+            <option>400</option>
+            <option>500</option>
+            <option>600</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="label label-primary">ASSIGN FACULTY</label>
+          <select [(ngModel)]="faculty" name="faculty" class="form-control" (change)="onGetFaculty(); dept=true" required>
+            <option></option>
+            <option *ngFor="let editfacu of editfaculty">{{editfacu.facultyName}}</option>
+          </select>
+        </div>
+        <span *ngIf="dept">
+          <div *ngIf="!showDept" style="text-align: center"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"  style="text-align: center;color:dodgerblue;
+font-size: 2em"></i><span class="sr-only"></span></div>
+          <div class="form-group" *ngIf="showDept">
+            <label class="label label-primary">ASSIGN DEPARTMENT</label>
+            <select [(ngModel)]="department" name="department" class="form-control" required>
+              <option></option>
+              <option *ngFor="let editdept of getDepartments">{{editdept.department}}</option>
+            </select>
+          </div>
+        <button class="btn btn-primary" [disabled]="!f.form.valid">EDIT</button>
+        </span>
+      </form>
+      <button class="btn btn-default"  *ngIf="editEdit" (click)="onEditButton()">CLOSE</button>
+
+
+      <div *ngIf="!editEdit">
+        <table class="table table-striped" id="myTable">
+          <thead>
+          <tr>
+            <th>COURSE</th>
+            <th>COURSE CODE</th>
+            <th>UNIT LOAD</th>
+            <th>LEVEL</th>
+            <th>DEPARTMENT</th>
+            <th>FACULTY</th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let editcourse of editcourses">
+            <td>{{editcourse.course}}</td>
+            <td>{{editcourse.coursecode}}</td>
+            <td>{{editcourse.unitload}}</td>
+            <td>{{editcourse.level}}</td>
+            <td>{{editcourse.department}}</td>
+            <td>{{editcourse.faculty}}</td>
+            <td class="edit" (click)="onEdit(editcourse.id, editcourse.course, editcourse.coursecode, editcourse.unitload, editcourse.department,editcourse.faculty); editEdit=!editEdit"><label class="label label-primary" style="color:#fff">edit</label></td>
+            <td class="delete" (click)="onDelete(editcourse.id, editcourse.course,editcourse.department,editcourse.faculty)"><label class="label label-danger" style="background: red; color:#fff">delete</label></td>
+          </tr>
+          </tbody>
+        </table>
+        <!--loader-->
+        <div *ngIf="!editcourses">
+          <div style="text-align: center"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;
+	         font-size: 10em"></i></div>
+        </div>
+        <!--end of loader-->
+      </div>
+      <br><br><br>
+    </div>
+    <br>
+  </div>
+</div>

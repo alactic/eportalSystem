@@ -1,0 +1,101 @@
+<div>
+    <button (click)="reset()" class="btn btn-primary" style="float:left; margin: 10px" *ngIf="staff_status">RESET</button>
+
+  <div class="col-md-12 status">
+        <div *ngIf="successMessage" class="alert alert-success" style="text-align: center">  {{successMessage}}</div>
+    <br><br>
+      <form #f="ngForm" (ngSubmit)="onProceed(f)" *ngIf="!staff_status">
+        <div class="form-group">
+          <label class="label label-primary">NEW STAFF</label>
+            <input type="radio" name="status" [(ngModel)]="new" value="new" style="float:right">
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">CONTRACT STAFF</label> <input type="radio" name="status" [(ngModel)]="transfer" value="transfer" style="float:right">
+        </div>
+        <!--<div class="form-group">-->
+          <!--<label class="label label-primary">REMOVE STAFF</label> <input type="radio" name="status" [(ngModel)]="remove" value="remove" style="float:right">-->
+        <!--</div><br>-->
+        <br>
+        <button type="submit" class="btn btn-primary">PROCEED</button>
+      </form>
+
+      <form #f="ngForm" (ngSubmit)="onNew(f)" *ngIf="new_staff">
+        <div class="form-group">
+          <label class="label label-primary">STAFF NAME</label>
+            <input type="text" name="surname" [(ngModel)]="surname" value="SURNAME" style="float:right" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">STAFF NO.</label>
+            <input type="text"  value="{{lastRegno}}" style="float:right" class="form-control" disabled>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">LEVEL</label>
+          <select id="level" name="level" class="form-control" ngModel required>
+            <option>B.sc</option>
+            <option>B.eng</option>
+            <option>MSC</option>
+            <option>PHD</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">YEAR OF ENTRY</label>
+          <select id="yob" name="entry" [(ngModel)]="entry" class="form-control" ngModel required>
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+            <option>2020</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">STAFF EMAIL</label><br> <label>{{surname}}.{{regno}}@schoolname.com</label></div>
+        <button type="submit" class="btn btn-primary">PROCEED</button>
+      </form>
+
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="preview">
+        <h2>PREVIEW</h2>
+        <!--<div class="form-group">-->
+          <!--<label class="label label-primary">STAFF SURNAME</label> <label style="float:right">{{surname}}</label>-->
+        <!--</div>-->
+        <div class="form-group">
+          <label class="label label-primary">STAFF NO.</label> <label style="float:right">{{sch_reg}}</label>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">ACADEMIC LEVEL</label><label style="float:right">{{level}}</label>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">YEAR OF ENTRY</label><label style="float:right">{{entry_year}}</label>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">STAFF EMAIL</label><br> <label style="float:right">{{staff_email}}</label>
+        </div>
+        <button type="submit" class="btn btn-primary">SUBMIT</button>
+      </form>
+
+        <!--&lt;!&ndash;REMOVE STAFF&ndash;&gt;-->
+        <!--<form #f="ngForm" (ngSubmit)="onRemove(f)" *ngIf="remove_staff">-->
+            <!--<div class="form-group" >-->
+                <!--<label class="label label-primary">REMOVE STAFF</label>-->
+                <!--<select [(ngModel)]="regno" name="regno" (change)="onChange()" class="form-control">-->
+                    <!--<option></option>-->
+                    <!--<option *ngFor="let getStaff of getStaffs">-->
+                        <!--{{getStaff.email}}-->
+                    <!--</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div *ngIf="delete_details">-->
+                <!--<label class="label label-primary">FIRSTNAME:</label> <label class="label label-default details">{{getStaff.firstname}}</label>-->
+                <!--<br><br>-->
+                <!--<label class="label label-primary">MIDDLENAME:</label> <label class="label label-default details">{{getStaff.middlename}}</label>-->
+                <!--<br><br>-->
+                <!--<label class="label label-primary">SURNAME:</label> <label class="label label-default details">{{getStaff.surname}}</label>-->
+                <!--<br><br>-->
+                <!--<label class="label label-primary">REG.NO:</label> <label class="label label-default details">{{getStaff.regno}}</label>-->
+                <!--<br><br>-->
+                <!--<label class="label label-primary">DEPARTMENT:</label> <label class="label label-default details">UNDEFINED</label>-->
+            <!--</div><br>-->
+            <!--<button type="submit" class="btn btn-primary" *ngIf="delete_details">REMOVE</button>-->
+        <!--</form>-->
+        <!--&lt;!&ndash;END REMOVE STAFF&ndash;&gt;-->
+
+    </div>
+</div>

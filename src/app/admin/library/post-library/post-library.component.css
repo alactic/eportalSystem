@@ -1,0 +1,8 @@
+form{
+    width: 50%;
+    padding: 20px 0 0 30px ;
+}
+
+.label:hover{
+    cursor: pointer;
+}

@@ -1,0 +1,65 @@
+<div>
+  <div class="row">
+    <div class="col-md-12 status">
+
+      <div *ngIf="!status">
+        <button class="btn btn-primary" (click)="view_role()">VIEW STAFF WITH THEIR ROLES</button>
+        <button class="btn btn-primary" (click)="assign_role()">ASSIGN ROLE TO STAFF</button>
+        <button class="btn btn-primary" (click)="remove_role()">REMOVE ROLE FROM STAFF</button>
+      </div>
+
+
+      <form #f="ngForm" (ngSubmit)="onEdit(f)" *ngIf="role">
+        <h3>SELECT STAFF</h3>
+        <div class="form-group">
+          <label>COURSE CODE</label>
+          <select class="form-control" (change)="onflag()" >
+            <option></option>
+            <option>staff1</option>
+            <option>staff2</option>
+          </select>
+        </div>
+        <span *ngIf="flag">
+        <div class="form-group">
+          <label>COURSE</label>
+            <input type="checkbox" name="course"  [(ngModel)]="course" class="form-control" >
+        </div>
+        <div class="form-group">
+          <label>SPECIAL ROLE</label>
+          <input type="text" name="role" placeholder="SPECIAL ROLE" [(ngModel)]="Role" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">PROCEED</button>
+          </span>
+      </form>
+
+      <form #f="ngForm" (ngSubmit)="onEdit(f)" *ngIf="remove_staffrole">
+        <h3>REMOVE ROLE</h3>
+        <div class="form-group">
+          <label>COURSE CODE</label>
+          <select class="form-control" (change)="onflag()" >
+            <option></option>
+            <option>cos102</option>
+            <option>cos104</option>
+          </select>
+        </div>
+        <span *ngIf="flag">
+        <div class="form-group">
+          <label>COURSE CODE</label>
+          <input type="text" name="course" placeholder="COURSE NAME" [(ngModel)]="course" class="form-control" >
+        </div>
+        <div class="form-group">
+          <label>COURSE TITLE</label>
+          <input type="text" name="coursetitle" placeholder="COURSE TITLE" [(ngModel)]="coursetitle" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>CREDIT LOAD</label>
+          <input type="text" name="creditload" placeholder="CREDIT LOAD" [(ngModel)]="creditload" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">DELETE</button>
+          </span>
+      </form>
+
+
+    </div>
+  </div>
+</div>

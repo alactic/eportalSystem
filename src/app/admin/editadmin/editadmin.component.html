@@ -1,0 +1,191 @@
+ <div class="container">
+  <div class="row">
+    <div *ngIf="!editadmin">
+      <div style="text-align: center"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;
+	font-size: 10em"></i></div>
+    </div>
+    <div class="col-md-12" *ngIf="editadmin">
+
+      <!--<button class="btn btn-primary" (click)="update()">UPDATE</button>-->
+      <button class="btn btn-primary" (click)="edit()" *ngIf="!editAll" style="float:left;">EDIT ALL</button>
+      <button class="btn btn-primary" (click)="revert()" *ngIf="editAll" style="float:left;">REVERT</button>
+      <form #detailForm="ngForm" (ngSubmit)="onUpdate(detailForm)" class="form-horizontal">
+        <button type="submit" class="btn btn-primary" [disabled]="!detailForm.form.valid" >UPDATE</button><br>
+        <div style="float: left; padding: 10px">
+          <div style="float: left; padding: 10px">
+            <label style="background: #ffffff; margin-right: 5px" for="passport1" *ngIf="myProfilePix">
+              <img  [src]="myProfilePix" alt="profile picture" width="150px" height="150px" style="border-radius: 10%" class="myphoto">
+            </label>
+            <label style="background: #ffffff; margin-right: 5px" for="passport1" *ngIf="userProfileImg && !myProfilePix">
+              <img  [src]="userProfileImg" alt="profile picture" width="150px" height="150px" style="border-radius: 10%" class="myphoto">
+            </label>
+            <label style="background: #ffffff; margin-right: 5px" for="passport1" *ngIf="!userProfileImg">
+            <img  src="../../../assets/img/loading.gif" alt="profile picture" width="150px" height="150px" style="border-radius: 10%" class="myphoto">
+            </label>/
+              <input type="file" id="passport1" class="form-control changeImage"  name="passport" [(ngModel)]="passport" (change)="onUpdateImage(form.files)" #form>
+            <!--<label for="passport1">Choose your file</label>-->
+            <div>
+              <span *ngIf="byteResult">
+                Image Upload progress:<br><progress value="{{byteResult}}" max="100"></progress><br>{{byteResult}}%
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="all_form">
+          <div class="form-group">
+            <label for="firstname" class="col-sm-5">
+              <span (click)="editfname=!editfname" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              FIRST NAME</label>
+            <div class="col-sm-7 editform" *ngIf="!editfname">
+              {{editadmin.firstname}}
+            </div>
+            <div class="col-sm-7" *ngIf="editfname">
+              <input type="text" class="form-control" id="firstname" placeholder="{{editadmin.firstname}}" name="firstname" [(ngModel)]="firstname" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="middlename" class="col-sm-5">
+              <span (click)="editmidname=!editmidname" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              MIDDLE NAME</label>
+            <div class="col-sm-7 editform" *ngIf="!editmidname">
+              {{editadmin.middlename}}
+            </div>
+            <div class="col-sm-7" *ngIf="editmidname">
+              <input type="text" class="form-control" id="middlename" placeholder="{{editadmin.middlename}}" name="middlename" [(ngModel)]="middlename" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="surname" class="col-sm-5">
+              <span (click)="editsname=!editsname" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              SURNAME</label>
+            <div class="col-sm-7 editform" *ngIf="!editsname">
+              {{editadmin.surname}}
+            </div>
+            <div class="col-sm-7" *ngIf="editsname">
+              <input type="text" class="form-control" id="surname" placeholder="{{editadmin.surname}}" name="surname" [(ngModel)]="surname" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="male" class="col-sm-5">
+              <span  (click)="editGender=!editGender" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              GENDER</label>
+            <div class="col-sm-7 editform" *ngIf="!editGender">
+              {{editadmin.gender}}
+            </div>
+            <div class="col-sm-7" *ngIf="editGender">
+              <label for="male">MALE</label>
+              <input type="radio" id="male" name="gender" value="male" [(ngModel)]='male' style="margin-right:40px" required>
+              <label for="female">FEMALE</label>
+              <input type="radio" id="female" name="gender" value="female" [(ngModel)]='female' required>
+            </div>
+          </div>
+
+          <div class="birthday">
+            <div class="form-group dob" >
+              <label for="dob" class="col-sm-5">
+                <span (click)="editDob=!editDob" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                DAY OF BIRTH</label>
+              <div class="col-sm-7 editform" *ngIf="!editDob">
+                {{editadmin.dob}}
+              </div>
+              <div class="col-sm-7" *ngIf="editDob">
+                <select id="dob" name="dob" class="form-control"  ngModel required>
+                  <option>{{editadmin.dob}}</option>
+                  <option  *ngFor="let day of dob let i=index">{{day}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group mob">
+              <label class="col-sm-5">
+                <span (click)="editMob=!editMob" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                MONTH OF BIRTH</label>
+              <div class="col-sm-7 editform" *ngIf="!editMob">
+                {{editadmin.mob}}
+              </div>
+              <div class="col-sm-7" *ngIf="editMob">
+                <select id="mob" class="form-control" name="mob" ngModel required>
+                  <option value="">{{editadmin.mob}}</option>
+                  <option *ngFor="let month of mob">{{month}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group yob">
+              <label for="yob" class="col-sm-5">
+                <span (click)="editYob=!editYob" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                YEAR OF BIRTH</label>
+              <div class="col-sm-7 editform" *ngIf="!editYob">
+                {{editadmin.yob}}
+              </div>
+              <div class="col-sm-7" *ngIf="editYob">
+                <select id="yob" name="yob" class="form-control" ngModel required>
+                  <option>{{editadmin.yob}}</option>
+                  <option *ngFor="let year of yob">{{year}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="address" class="col-sm-5">
+              <span (click)="editQualification=!editQualification" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              QUALIFICATION</label>
+            <div class="col-sm-7 editform" *ngIf="!editQualification">
+              {{editadmin.qualification}}
+            </div>
+            <div class="col-sm-7" *ngIf="editQualification">
+              <input type="text" class="form-control" id="qualification" placeholder="{{editadmin.qualification}}" name="qualification" [(ngModel)]="qualification" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="address" class="col-sm-5">
+              <span (click)="editSchool=!editSchool" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              SCHOOL ATENDED</label>
+            <div class="col-sm-7 editform" *ngIf="!editSchool">
+              {{editadmin.school_attended}}
+            </div>
+            <div class="col-sm-7" *ngIf="editSchool">
+              <input type="text" class="form-control" id="school_attended" placeholder="{{editadmin.school_attended}}" name="school_attended" [(ngModel)]="school_attended" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="address" class="col-sm-5">
+              <span (click)="editAddress=!editAddress" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              ADDRESS</label>
+            <div class="col-sm-7 editform" *ngIf="!editAddress">
+              {{editadmin.address}}
+            </div>
+            <div class="col-sm-7" *ngIf="editAddress">
+              <input type="text" class="form-control" id="address" placeholder="{{editadmin.address}}" name="address" [(ngModel)]="address" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="state" class="col-sm-5">
+              <span (click)="editState=!editState" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>STATE</label>
+            <div class="col-sm-7 editform" *ngIf="!editState">
+              {{editadmin.state}}
+            </div>
+            <div class="col-md-7" *ngIf="editState">
+              <input type="text" class="form-control" id="state" placeholder="{{editadmin.state}}" name="state" [(ngModel)]="state" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="country" class="col-sm-5">
+              <span  (click)="editCountry=!editCountry" *ngIf="!editAll"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              COUNTRY</label>
+            <div class="col-sm-7 editform" *ngIf="!editCountry">
+              {{editadmin.country}}
+            </div>
+            <div class="col-sm-7" *ngIf="editCountry">
+              <input type="text" class="form-control" id="country" placeholder="{{editadmin.country}}" name="country" [(ngModel)]="country" required>
+            </div>
+          </div>
+        </div>
+      </form><br><br><br><br>
+    </div>
+
+  </div>
+</div>

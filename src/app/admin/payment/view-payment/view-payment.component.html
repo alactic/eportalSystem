@@ -1,0 +1,36 @@
+<!--end of loader-->
+<div>
+  <div class="col-md-12">
+      <br><br><br>
+      <table class="table table-striped" *ngIf="allPayments" id="myTable">
+          <thead>
+              <tr>
+                  <th>REG.NO</th>
+                  <th>EMAIL</th>
+                  <th>SESSION</th>
+                  <th>LEVEL</th>
+                  <th>DEPARTMENT</th>
+                  <th>FACULTY</th>
+                  <th>DATE OF PAYMENT</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let allPayment of allPayments">
+                  <td>{{allPayment.regno}}</td>
+                  <td>{{allPayment.email}}</td>
+                  <td>{{allPayment.session}}</td>
+                  <td>{{allPayment.level}}</td>
+                  <td>{{allPayment.department}}</td>
+                  <td>{{allPayment.faculty}}</td>
+                  <td>{{allPayment.created_at}}</td>
+              </tr>
+          </tbody>
+          <br><br><br>
+    </table>
+  </div>
+    <!--loader-->
+    <div *ngIf="!showPayments">
+        <div style="text-align: center"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;
+	         font-size: 5em"></i></div>
+    </div>
+</div>

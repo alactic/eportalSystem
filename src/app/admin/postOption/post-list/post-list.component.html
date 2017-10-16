@@ -1,0 +1,80 @@
+<div>
+  <div class="col-md-12">
+    <div>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="editSection">
+        <button class="btn btn-default" (click)="onclose()">CLOSE</button>
+        <div class="form-group">
+          <label class="label label-primary">POST OPTIONS</label><a class="label label-default" (click)="showPost=!showPost;showSubmit=!showSubmit">edit</a>
+          <p *ngIf="!showPost" class="alert alert-info">{{editSection.post_type}}</p>
+          <select *ngIf="showPost" class="form-control" [(ngModel)]="post" name="post" required>
+            <option></option>
+            <option>GENERAL INFORMATION</option>
+            <option>STUDENTS</option>
+            <option>STAFF</option>
+            <option>EVENTS</option>
+            <option>ADMISSION</option>
+            <option>TIMETABLE</option>
+            <option>SPORTS</option>
+            <option>FACILITIES</option>
+            <option>ACADEMIC</option>
+            <option>ADMINISTRATION</option>
+            <option>NEWS</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="label label-primary">TOPIC HEADER</label><a class="label label-default" (click)="showTopic=!showTopic;showSubmit1=!showSubmit1">edit</a>
+          <p *ngIf="!showTopic" class="alert alert-info">{{editSection.heading}}</p>
+          <span *ngIf="showTopic">
+             <input type="text" name="heading" placeholder="Enter your topic header" maxlength="30" [(ngModel)]="heading" class="form-control" required>
+             <span class="note">NOTE: MUST NOT EXCEED 30 CHARACTERS</span>
+          </span>
+        </div>
+        <div class="form-group" >
+          <label class="label label-primary">ARTICLE</label><a class="label label-default" (click)="showArticle=!showArticle;showSubmit2=!showSubmit2">edit</a>
+          <p *ngIf="!showArticle" class="alert alert-info">{{editSection.article}}</p>
+          <span *ngIf="showArticle">
+             <textarea name="article"  [(ngModel)]="article" class="form-control" cols="20" rows="10" required></textarea>
+          </span>
+        </div>
+        <button *ngIf="showSubmit||showSubmit1||showSubmit2" type="submit" class="btn btn-primary" [disabled]="!f.form.valid">SUBMIT</button>
+        <br><br><br><br><br><br>
+      </form>
+    </div>
+
+<div *ngIf="!editSection" style="margin-top: 20px">
+  <div *ngIf="successMessage" style="text-align: center">
+    <span class="alert alert-success" >{{successMessage}}</span>
+  </div>
+  <table class="table table-striped" id="myTable">
+    <thead>
+    <tr>
+      <th>POST</th>
+      <th>HEADING</th>
+      <th>ARTICLE</th>
+      <th>DATE OF POSTING</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allPost of allPosts" border="1px" >
+      <td>{{allPost.post_type}}</td>
+      <td>{{allPost.heading}}</td>
+      <td>{{allPost.article|slice:0:30}} ...</td>
+      <td>{{allPost.updated_at|date}}</td>
+      <td><button (click)="onEdit(allPost.id)" class="label label-primary">edit</button></td>
+      <td><button (click)="onDelete(allPost.id)" class="label label-danger">delete</button></td>
+    </tr>
+    </tbody>
+    <br><br><br>
+  </table>
+</div>
+    <!--loader-->
+    <div *ngIf="!posts">
+      <div style="text-align: center"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;
+	         font-size: 10em"></i></div>
+    </div>
+    <!--end of loader-->
+  </div>
+</div>

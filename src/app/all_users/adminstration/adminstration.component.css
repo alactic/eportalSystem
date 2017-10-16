@@ -1,0 +1,16 @@
+.mainbody{
+    width: 100%;
+    height:700px;
+    margin: 0;
+}
+
+.col-md-8{
+    background: #fff;
+    height: 100%;
+}
+
+.academic_text{
+    text-align: justify;
+    padding: 30px;
+    font-weight: bold;
+}

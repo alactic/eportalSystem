@@ -1,0 +1,73 @@
+<div class="col-md-12" *ngIf="!showPrint">
+  <div class="col-md-12">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="form-group" >
+        <label>SEMESTER</label>
+        <select class="form-control" [(ngModel)]="semester" name="semester" required>
+          <option></option>
+          <option>FIRST SEMESTER</option>
+          <option>SECOND SEMESTER</option>
+        </select>
+      </div>
+      <div class="form-group" >
+        <label>SESSION</label>
+        <select class="form-control" [(ngModel)]="session" name="session" required>
+          <option></option>
+          <option>2014/2015</option>
+          <option>2015/2016</option>
+          <option>2016/2017</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" [disabled]="!f.form.valid">SUBMIT</button>
+    </form>
+  </div>
+</div>
+<div class="row" *ngIf="showPrint">
+  <div class="col-md-12" *ngIf="editstudent">
+    <b>
+      <div class="header">
+        NAME OF INSTITUTION
+        <br>
+        COURSE REGISTRATION FORM
+      </div>
+    </b><br><br>
+    <div class="detail">
+      <label>FIRST NAME:</label> <span>{{editstudent.firstname}}</span><label>MIDDLE NAME:</label> <span>{{editstudent.middlename}}</span>
+      <label>SURNAME:</label><span>{{editstudent.surname}}</span><label>GENDER:</label> <span>{{editstudent.gender}}</span>
+      <label>DATE OF BIRTH:</label><span>{{editstudent.dob}}/{{editstudent.mob}}/{{editstudent.yob}}</span>
+      <label>EMAIL:</label><span>{{editstudent.email}}</span>
+      <label>LEVEL:</label><span>{{editstudent.level}}</span>
+      <label>DEPARTMENT:</label><span>{{editstudent.department}}</span>
+      <label>FACULTY:</label><span>{{editstudent.faculty}}</span>
+      <label>EMAIL:</label><span>{{editstudent.email}}</span>
+      <label>ADDRESS:</label><span>{{editstudent.address}}</span>
+      <label>STATE:</label><span>{{editstudent.state}}</span>
+      <label>COUNTRY:</label><span>{{editstudent.country}}</span>
+    </div>
+
+
+    <form #f="ngForm" (ngSubmit)="onRegister(f)" *ngIf="editcourses">
+      <table class="table table-striped">
+        <tr>
+          <th></th>
+          <th>COURSE</th>
+          <th>CODE</th>
+          <th>UNIT</th>
+          <th>LECTURER</th>
+        </tr>
+
+        <tr  *ngFor="let editcourse of editcourses">
+          <td><img src="assets/img/good.png" height="20px" width="20px" *ngIf="!editcourse.id"></td>
+          <td>{{editcourse.course}}</td>
+          <td>{{editcourse.coursecode}}</td>
+          <td>{{editcourse.unitload}}</td>
+          <td></td>
+        </tr>
+      </table>
+      <br>
+      <div style="text-align: center">
+        <button class="btn btn-primary">PRINT</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,170 @@
+<body id="page-top">
+<!-- PROFILE FEATURE -->
+<!-- HEADER -->
+<app-sub-header></app-sub-header>
+<!-- END / HEADER -->
+<section class="profile-feature">
+    <div class="awe-parallax bg-profile-feature"></div>
+    <div class="awe-overlay overlay-color-3"></div>
+    <div class="container">
+        <div class="name-author">
+            <h2 class="big">{{getAllDetail.post_type}}</h2>
+        </div>
+        <!--<div class="info-author">-->
+        <!--<div class="image">-->
+        <!--<img src="images/team-13.jpg" alt="">-->
+        <!--</div>-->
+        <!--<div class="name-author">-->
+        <!--<h2 class="big">Anna Molly</h2>-->
+        <!--</div>-->
+        <!--<div class="address-author">-->
+        <!--<i class="fa fa-map-marker"></i>-->
+        <!--<h3>Hanoi, Vietnam</h3>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="info-follow">-->
+        <!--<div class="trophies">-->
+        <!--<span>12</span>-->
+        <!--<p>Trophies</p>-->
+        <!--</div>-->
+        <!--<div class="trophies">-->
+        <!--<span>12</span>-->
+        <!--<p>Follower</p>-->
+        <!--</div>-->
+        <!--<div class="trophies">-->
+        <!--<span>20</span>-->
+        <!--<p>Following</p>-->
+        <!--</div>-->
+        <!--<div class="trophies">-->
+        <!--<span>$ 149,902</span>-->
+        <!--<p>Balance</p>-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+</section>
+<!-- END / PROFILE FEATURE -->
+
+
+<!-- CONTEN BAR -->
+<section class="content-bar">
+    <div class="container">
+        <ul>
+            <li>
+                <a [routerLink]="['/events', 1]">
+                    <i class="icon md-book-1"></i>
+                    EVENTS
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/events', 3]">
+                    <i class="icon md-people"></i>
+                    ACADEMICS
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/events', 2]">
+                    <i class="icon md-shopping"></i>
+                    TIMETABLE
+                </a>
+            </li>
+            <li class="current">
+                <a [routerLink]="['/events', 4]">
+                    <i class="icon md-user-minus"></i>
+                    ADMISSION
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/events', 5]">
+                    <i class="icon md-book-1"></i>
+                    GENERAL INFO.
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/events', 6]">
+                    STAFF
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/events', 7]">
+                    <i class="icon md-book-1"></i>
+                    STUDENTS
+                </a>
+            </li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</section>
+<!-- END / CONTENT BAR -->
+<!-- PAGE WRAP -->
+<div id="page-wrap">
+
+    <section id="quizz-intro-section" class="quizz-intro-section learn-section">
+        <div class="container">
+            <div class="title-ct">
+                <h3><strong>{{getAllDetail.post_type}}</strong></h3>
+            </div>
+
+            <div class="question-content-wrap">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="styleImg col-md-4" style="float:left">
+                                <img *ngIf="imgUrl" [src]="imgUrl" alt="img" class="styleImg">
+                                <img *ngIf="!imgUrl" src="../../assets/img/loading.gif" alt="img" class="styleImg">
+                            </div>
+                            <div class="question-content col-md-8">
+                                <h4 class="sm bold">{{getAllDetail.heading}}</h4>
+                                <p style="text-align: justify">{{getAllDetail.article}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <aside class="question-sidebar">
+                            <div class="download-file-learn" *ngIf="(getAllDetail.file_name!='null')">
+                                <a (click)="onDownload(getAllDetail.file_name)" class="mc-btn btn-style-1">
+                                    <i class="icon md-download-1"></i>
+                                    DOWNLOAD
+                                </a>
+                            </div>
+                            <div class="score-sb">
+                                <!--<h4 class="title-sb">Total score<span>60</span></h4>-->
+                                <ul>
+                                    <li class="active" *ngFor="let getPost of getAllPost">
+                                        <a [routerLink]="['/nav', getPost.id]">
+                                            {{getPost.heading}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+<!-- END / PAGE WRAP -->
+
+<!-- Load jQuery -->
+<script type="text/javascript" src="js/library/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/library/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/library/jquery.owl.carousel.js"></script>
+<script type="text/javascript" src="js/library/jquery.appear.min.js"></script>
+<script type="text/javascript" src="js/library/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-20585382-5', 'megadrupal.com');
+    ga('send', 'pageview');
+</script>
+</body>

@@ -1,0 +1,81 @@
+<app-logout></app-logout>
+<div class="section">
+    <div class="row">
+        <div class="navbar navbar-default col-md-2 leftbar">
+            <div class="container-fluid navbar">
+                <!-- Brand and toggle get grouped for better mobile display -->
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul>
+                        <span>
+                      <a routerLink="edit" routerLinkActive="active"><li>EDIT PROFILE</li></a>
+                      <a  (click)="showStudent=!showStudent" routerLinkActive="active"><li>STUDENT</li></a>
+                        <span *ngIf="showStudent">
+                             <a routerLink="addStudent"  routerLinkActive="active"><li class="submenu">ADD STUDENTS</li></a>
+                             <a routerLink="viewStudents"  routerLinkActive="active"><li class="submenu">VIEW STUDENTS</li></a>
+                        </span>
+                      <a (click)="showStaff=!showStaff"><li routerLinkActive="active">STAFF</li></a>
+                        <span *ngIf="showStaff">
+                             <a routerLink="staff" routerLinkActive="active"><li class="submenu">ADD STAFF</li></a>
+                             <a routerLink="viewStaff"  routerLinkActive="active"><li class="submenu">VIEW STAFF</li></a>
+                        </span>
+                      <a (click)="showFaculty=!showFaculty" routerLinkActive="active"><li>FACULTY</li></a>
+                          <span *ngIf="showFaculty">
+                               <a routerLink="addFaculty"><li class="submenu">ADD FACULTY</li></a>
+                               <a routerLink="listFaculty"><li class="submenu">LIST FACULTY</li></a>
+                          </span>
+                      <a (click)="showDept=!showDept" routerLinkActive="active"><li>DEPARTMENT</li></a>
+                          <span *ngIf="showDept">
+                               <a routerLink="addDept"><li class="submenu">ADD DEPARTMENT</li></a>
+                               <a routerLink="listDept"><li class="submenu">LIST DEPARTMENT</li></a>
+                          </span>
+                      <a (click)="showCourse=!showCourse" routerLinkActive="active"><li>COURSE</li></a>
+                          <span *ngIf="showCourse">
+                               <a routerLink="addCourse"><li class="submenu">ADD COURSE</li></a>
+                               <a routerLink="listCourse"><li class="submenu">LIST COURSES</li></a>
+                              <a routerLink="registeredCourses"><li class="submenu">REGISTERED COURSES</li></a>
+                          </span>
+                      <a (click)="showPayment=!showPayment" routerLinkActive="active"><li>PAYMENT</li></a>
+                          <span *ngIf="showPayment">
+                               <a routerLink="setSchoolfees"><li class="submenu">SET SCHOOL FEES</li></a>
+                               <a routerLink="viewPayment"><li class="submenu">VIEW PAYMENT</li></a>
+                          </span>
+
+                      <a (click)="post=!post" routerLinkActive="active"><li>POST OPTIONS</li></a>
+                          <span *ngIf="post">
+                               <a routerLink="post"><li class="submenu">POST</li></a>
+                               <a routerLink="postList"><li class="submenu">VIEW POSTS</li></a>
+                          </span>
+
+                            <a (click)="library=!library" routerLinkActive="active"><li>LIBRARY</li></a>
+                          <span *ngIf="library">
+                               <a routerLink="libraryPost"><li class="submenu">ADD NEW BOOKS</li></a>
+                               <a routerLink="libraryList"><li class="submenu">VIEW BOOKS</li></a>
+                          </span>
+                            <!-- <a  routerLink="approve_book" routerLinkActive="active"><li>APPROVE BOOK</li></a>-->
+                            <!-- <a  routerLink="staff_role"><li>STAFF ROLE</li></a>-->
+                      <a  routerLink="changepassword"><li>CHANGE PASSWORD</li></a>
+                            <a  routerLink="/logout"><li>LOGOUT</li></a>
+                  </span>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <div class="col-md-10 centerbar">
+            <!--<div class="gallary"></div>-->
+            <div class="row">
+                <div class="col-md-12">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

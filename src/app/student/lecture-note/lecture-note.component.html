@@ -1,0 +1,76 @@
+<!--<div class="row">-->
+  <!--<div class="col-md-12 score">-->
+    <!--<h4><label class="label label-primary" style="text-align: center" >LECTURE NOTE</label></h4>-->
+  <!--</div>-->
+<!--</div>-->
+<div class="row">
+  <!--<div class="col-md-12">
+    <label class="label label-info score" style="float:right" >View All Lecture Note</label>
+  </div>-->
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <!--GET THE DETAIL INFO OF THE STAFF-->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content"  *ngIf="showDetail">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">ASSIGNMENT DETAILS</h4>
+          </div>
+
+          <div class="modal-body" style="height: 250px;">
+            <div style="float:right">
+              <img *ngIf="staffImg" [src]="staffImg" height="150px" width="150px" class="staff_dp">
+              <img *ngIf="!staffImg" src="../../../assets/img/loading.gif" height="150px" width="150px" class="staff_dp">
+            </div>
+            <div class="modal_item"><label class="label" style="color:#2b2b2b;">NAME</label></div>
+            <div><span class="label label-primary">{{getStaffDetails.firstname}}  {{getStaffDetails.middlename}}  {{getStaffDetails.surname}}</span>
+            </div>
+            <div class="modal_item"><label class="label" style="color:#2b2b2b">QUALIFICATION</label></div>
+            <div> <span class="label label-primary">{{getStaffDetails.qualification}}</span>
+            </div>
+            <div class="modal_item"><label class="label" style="color:#2b2b2b">EMAIL</label></div>
+            <div> <span class="label label-primary">{{getStaffDetails.email}}</span>
+            </div>
+            <div class="modal_item"><label class="label" style="color:#2b2b2b">COURSE</label></div>
+            <div><span class="label label-primary">{{getStaffDetails.course}}</span>
+            </div>
+            <div class="modal_item"><label class="label" style="color:#2b2b2b">DEPARTMENT</label></div>
+            <div><span class="label label-primary">{{getStaffDetails.department}}</span>
+            </div>
+            <div class="btn btn-success" style="margin: 5% 0 0 25%;" (click)="onDownload(getStaffDetails.upload_name)">
+              download here:<i class="fa fa-download" aria-hidden="true"></i>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <div style="clear: both"></div>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-striped" id="myTable">
+      <tr>
+        <td>COURSE TITLE</td>
+        <td>NOTE</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let getMaterial of getMaterials">
+        <td>{{getMaterial.course}}</td>
+        <td>{{getMaterial.note}}</td>
+        <td class="label label-success" (click)="onDownload(getMaterial.upload_name)" style="width: 50px; float:right"><i class="fa fa-download" aria-hidden="true"></i></td>
+        <td class="label label-primary" (click)="onView(getMaterial.email, getMaterial.id)" style="width: 50px; float:right"  data-toggle="modal" data-target="#myModal">view</td>
+      </tr>
+
+    </table>
+  </div>
+</div>
+<div *ngIf="!view_all_assignment">
+  <div style="text-align: center" *ngIf="!materialStatus"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;
+                 font-size: 10em"></i></div>
+</div>

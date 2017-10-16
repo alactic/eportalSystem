@@ -1,0 +1,23 @@
+.category_style{
+    color:#fff;
+    float:left;
+    list-style: none;
+}
+.category_style li{
+    float: right;
+    margin: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.category_style li a:hover{
+    font-style: italic;
+    color: #000000;
+}
+.myClass{
+    background: #000000;
+}

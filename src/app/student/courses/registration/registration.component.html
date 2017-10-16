@@ -1,0 +1,164 @@
+<div class="col-md-12">
+<div class="col-md-12" *ngIf="!showRegister">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" style="width:60%">
+        <div class="form-group" >
+            <label>SEMESTER</label>
+            <select class="form-control" [(ngModel)]="semester" name="semester" required>
+                <option></option>
+                <option>FIRST SEMESTER</option>
+                <option>SECOND SEMESTER</option>
+            </select>
+        </div>
+        <div class="form-group" >
+            <label>SESSION</label>
+            <select class="form-control" [(ngModel)]="session" name="session" required>
+                <option></option>
+                <option>2014/2015</option>
+                <option>2015/2016</option>
+                <option>2016/2017</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" [disabled]="!f.form.valid">SUBMIT</button>
+    </form>
+</div>
+</div>
+<div>
+    <div class="col-md-12" *ngIf="showRegister1">
+        <label class="label label-default" style="text-align:center">COURSES HAVE NOT BEEN ADDED FOR THE SESSION</label>
+    </div>
+  <div class="col-md-12" *ngIf="showRegister2">
+   <b>
+     <div class="header">
+       NAME OF INSTITUTION
+      <br>
+       COURSE REGISTRATION FORM
+     </div>
+   </b><br><br>
+<div class="detail" *ngIf="editstudent">
+    <label>FIRST NAME:</label> <span>{{editstudent.firstname}}</span><label>MIDDLE NAME:</label> <span>{{editstudent.middlename}}</span>
+    <label>SURNAME:</label><span>{{editstudent.surname}}</span><label>GENDER:</label> <span>{{editstudent.gender}}</span>
+    <label>DATE OF BIRTH:</label><span>{{editstudent.dob}}/{{editstudent.mob}}/{{editstudent.yob}}</span>
+    <label>EMAIL:</label><span>{{editstudent.email}}</span>
+    <label>LEVEL:</label><span>{{editstudent.level}}</span>
+    <label>DEPARTMENT:</label><span>{{editstudent.department}}</span>
+    <label>FACULTY:</label><span>{{editstudent.faculty}}</span>
+    <label>ADDRESS:</label><span>{{editstudent.address}}</span>
+    <label>STATE:</label><span>{{editstudent.state}}</span>
+    <label>COUNTRY:</label><span>{{editstudent.country}}</span>
+</div>
+
+
+      <form #f="ngForm" (ngSubmit)="onRegister(f)" *ngIf="!showPrint">
+            <table class="table table-striped" *ngIf="editcourses">
+              <tr>
+                  <th></th>
+                  <th></th>
+                <th>COURSE</th>
+                <th>CODE</th>
+                <th>UNIT</th>
+                <th>LECTURER</th>
+              </tr>
+
+                <tr  *ngFor="let editcourse of editcourses">
+                    <td *ngIf="editcourse.created_at"><button class="label label-primary" (click)="editcourse.created_at=!editcourse.created_at" (click)="selected(editcourse.coursecode, editcourse.unitload)">SELECT</button>
+                    <td *ngIf="!editcourse.created_at"><button class="label label-primary" (click)="editcourse.created_at=!editcourse.created_at"  (click)="unselect(editcourse.coursecode, editcourse.unitload)">UNSELECT</button>
+                    </td>
+                    <td><img src="assets/img/good.png" height="20px" width="20px" *ngIf="!editcourse.created_at"></td>
+                    <td>{{editcourse.course}}</td>
+                    <td>{{editcourse.coursecode}}</td>
+                    <td>{{editcourse.unitload}}</td>
+                    <td></td>
+              </tr>
+              <tr  *ngFor="let borrow of storeBorrow">
+                    <td *ngIf="borrow.created_at"><button class="label label-primary" (click)="borrow.created_at=!borrow.created_at" (click)="selected(borrow.coursecode, borrow.unitload)">SELECT</button>
+                    <td *ngIf="!borrow.created_at"><button class="label label-primary" (click)="borrow.created_at=!borrow.created_at"  (click)="unselect(borrow.coursecode, borrow.unitload)">UNSELECT</button>
+                    </td>
+                    <td><img src="assets/img/good.png" height="20px" width="20px" *ngIf="!borrow.created_at"></td>
+                    <td>{{borrow.course}}</td>
+                    <td>{{borrow.coursecode}}</td>
+                    <td>{{borrow.unitload}}</td>
+                    <td></td>
+              </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><span *ngIf="creditload">{{creditload}}</span></td>
+                    <td></td>
+                </tr>
+            </table>
+          <div  style="text-align: center">
+              <span *ngIf="!showBorrow"><a (click)="showBorrow=!showBorrow">BORROW COURSE</a></span>
+          </div>
+          <!--form for borrowed courses-->
+          <form class="form-inline" *ngIf="showBorrow" #f="ngForm" (ngSubmit)="onSelectCourse()">
+              <br>
+              <label class="label label-default" style="text-align: center"> BORROW COURSES</label>
+              <br>
+              <div class="form-group faculty">
+                  <label class="label label-primary">FACULTY</label>
+                  <select [(ngModel)]="faculty" name="faculty" class="form-control" (change)="onGetFaculty()" required>
+                      <option></option>
+                      <option *ngFor="let editfacu of editfaculty">{{editfacu.facultyName}}</option>
+                  </select>
+              </div>
+              <span *ngIf="showDept">
+                  <div class="form-group department">
+                    <label class="label label-primary">DEPARTMENT</label>
+                    <select [(ngModel)]="department" name="department" class="form-control" (change)="onSelectDept()" required>
+                      <option></option>
+                      <option *ngFor="let editdept of getDepartments">{{editdept.department}}</option>
+                    </select>
+                  </div>
+              </span>
+            <span *ngIf="showCourse">
+              <div class="form-group department">
+                <label class="label label-primary">COURSE</label>
+                <select [(ngModel)]="borrowcourse" name="borrowcourse" class="form-control" required>
+                  <option></option>
+                  <option *ngFor="let editborrow of editborrowCourse">{{editborrow.course}}</option>
+                </select>
+              </div>
+                <button class="label label-primary"  [disabled]="!f.form.valid">SELECT COURSE</button>
+            </span>
+          </form>
+          <br><br>
+          <div style="text-align: center">
+              <button class="btn btn-primary">REGISTER</button>
+          </div>
+      </form>
+
+      <!--show print-->
+      <div class="row" *ngIf="showPrint">
+          <div class="col-md-12" *ngIf="editstudent">
+
+              <form #f="ngForm" (ngSubmit)="onRegister(f)" *ngIf="editcourses">
+                  <table class="table table-striped">
+                      <tr>
+                          <th></th>
+                          <th>COURSE</th>
+                          <th>CODE</th>
+                          <th>UNIT</th>
+                          <th>LECTURER</th>
+                      </tr>
+
+                      <tr  *ngFor="let editcourse of editcourses">
+                          <td><img src="assets/img/good.png" height="20px" width="20px" *ngIf="!editcourse.created_at"></td>
+                          <td>{{editcourse.course}}</td>
+                          <td>{{editcourse.coursecode}}</td>
+                          <td>{{editcourse.unitload}}</td>
+                          <td></td>
+                      </tr>
+
+                  </table>
+                  <br>
+                  <div style="text-align: center">
+                      <button class="btn btn-primary">PRINT</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+
+  </div>
+</div>

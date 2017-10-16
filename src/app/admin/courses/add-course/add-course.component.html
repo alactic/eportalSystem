@@ -1,0 +1,80 @@
+<div style="padding:50px">
+  <div class="row">
+    <div class="col-md-12">
+      <div style="font-size: 20px; text-align: center"><span class="label label-success">{{responseMessage}}</span></div>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="form-group">
+          <label class="label label-primary">ADD NEW COURSE</label>
+          <input type="text" name="name" [(ngModel)]="name" placeholder="NEW COURSE" class="form-control" required>
+        </div>
+       <div class="form-group">
+          <label class="label label-primary">COURSE CODE</label>
+          <input type="text" name="code" [(ngModel)]="code" placeholder="COURSE CODE" class="form-control" required>
+        </div>
+          <div class="form-group">
+              <label class="label label-primary">SEMESTER</label>
+              <select name="semester" [(ngModel)]="semester" class="form-control" required>
+                  <option></option>
+                  <option>FIRST SEMESTER</option>
+                  <option>SECOND SEMESTER</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label class="label label-primary">COURSE STATUS</label>
+              <select name="status" [(ngModel)]="status" class="form-control" required>
+                  <option></option>
+                  <option>CORE</option>
+                  <option>ELECTIVE</option>
+                  <option>REQUIRED</option>
+              </select>
+          </div>
+       <div class="form-group">
+          <label class="label label-primary">CREDIT UNIT</label>
+           <select name="unit" [(ngModel)]="unit" placeholder="CREDIT UNIT" class="form-control" required>
+               <option></option>
+               <option>1</option>
+               <option>2</option>
+               <option>3</option>
+               <option>4</option>
+               <option>5</option>
+               <option>6</option>
+           </select>
+        </div>
+          <div class="form-group">
+              <label class="label label-primary">LEVEL</label>
+              <select name="level" [(ngModel)]="level" placeholder="LEVEL" class="form-control" required>
+                  <option></option>
+                  <option>100</option>
+                  <option>200</option>
+                  <option>300</option>
+                  <option>400</option>
+                  <option>500</option>
+                  <option>600</option>
+              </select>
+          </div>
+
+        <div class="form-group">
+          <label class="label label-primary">ASSIGN FACULTY</label>
+          <select [(ngModel)]="faculty" name="faculty" class="form-control" (change)="onGetFaculty(); onDept=true" required>
+            <option></option>
+            <option *ngFor="let editfacu of editfaculty">{{editfacu.facultyName}}</option>
+          </select>
+        </div>
+        <span *ngIf="onDept">
+            <div *ngIf="!showDept">
+          <div style="text-align: center"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;
+	         font-size: 2em"></i></div>
+        </div>
+          <div class="form-group" *ngIf="showDept">
+            <label class="label label-primary">ASSIGN DEPARTMENT</label>
+            <select [(ngModel)]="department" name="department" class="form-control" required>
+              <option></option>
+              <option *ngFor="let editdept of getDepartments">{{editdept.department}}</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" [disabled]="!f.form.valid">ADD</button>
+        </span>
+      </form>
+    </div>
+  </div>
+</div>

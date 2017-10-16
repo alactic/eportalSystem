@@ -1,0 +1,39 @@
+img{
+    margin-top:30%;
+}
+.col-md-6{
+    margin-top:5%;
+}
+h1{
+    font-size: 40px;
+    color:cornflowerblue;
+    font-weight:bold;
+    margin-left:120px;
+    margin-top:10px;
+    margin-bottom: 30px;
+}
+
+a{
+    cursor: pointer;
+}
+
+.error{
+    font-size:10px;
+    color:red;
+    font-weight: bold;
+}
+.birthday{
+    width: 100%;
+}
+.dob{
+    float: left;
+    margin-right: 10%;
+}
+.mob{
+    float: left;
+    margin-right: 10%;
+}
+.yob{
+    float: left;
+    margin-right: 10%;
+}

@@ -1,0 +1,101 @@
+<div style="padding: 10px">
+    <div class="col-md-12">
+      <div style="font-size: 20px; text-align: center"><span class="label label-success">{{responseMessage}}</span></div>
+      <button class="btn btn-primary" (click)="editEdit=!editEdit; table()" style="margin: 20px" *ngIf="!onSetPayment">SET SCHOOL FEES</button>
+      <br>
+      <form #f="ngForm" (ngSubmit)="onSubmitPayment(f)" *ngIf="editEdit" style="width: 70%">
+        <div class="form-group">
+          <label class="label label-primary">AMOUNT</label>
+          <input type="text" name="amount" [(ngModel)]="amount"  value="{{amount}}" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">LEVEL</label>
+          <select  name="level" [(ngModel)]="level" value="{{level}}" class="form-control" required>
+            <option></option>
+            <option>100</option>
+            <option>200</option>
+            <option>300</option>
+            <option>400</option>
+            <option>500</option>
+            <option>600</option>
+          </select><label class="label label-primary">+ADD</label>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">SESSION</label>
+          <select  *ngIf="!showSession" name="session" [(ngModel)]="session"  value="{{session}}" class="form-control" required>
+            <option></option>
+            <option>2014/2015</option>
+            <option>2015/2016</option>
+            <option>2016/2017</option>
+          </select>
+          <input *ngIf="showSession" type="text" name="session" [(ngModel)]="session"  value="{{session}}" class="form-control" required>
+          <label class="label label-primary" (click)="showSession=!showSession">
+          <span *ngIf="!showSession">+ADD</span>
+          <span *ngIf="showSession">REVERT</span>
+        </label>
+        </div>
+        <div class="form-group">
+          <label class="label label-primary">FACULTY</label>
+          <select [(ngModel)]="faculty" name="faculty" value="{{faculty}}" class="form-control" (change)="onGetFaculty(); dept=true" required>
+            <option></option>
+            <option *ngFor="let editfacu of editfaculty">{{editfacu.facultyName}}</option>
+          </select>
+        </div>
+
+          <span *ngIf="dept">
+          <div *ngIf="!showDept" style="text-align: center"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"  style="text-align: center;color:dodgerblue;
+font-size: 2em"></i><span class="sr-only"></span></div>
+          <div class="form-group" *ngIf="showDept">
+            <label class="label label-primary">DEPARTMENT</label>
+            <select [(ngModel)]="department" name="department" value="{{department}}" class="form-control" required >
+              <option></option>
+              <option *ngFor="let editdept of getDepartments">{{editdept.department}}</option>
+            </select>
+          </div>
+        <button class="btn btn-primary" [disabled]="!f.form.valid" *ngIf="!onSetPayment">SET FEES</button>
+          <button class="btn btn-primary" [disabled]="!f.form.valid" *ngIf="onSetPayment">EDIT FEES</button>
+        </span>
+        <button class="btn btn-default" (click)="editEdit=!editEdit; onSetPayment=!onSetPayment; table()">CLOSE</button>
+        <br><br><br>
+      </form>
+
+      <div *ngIf="!editEdit">
+            <table class="table table-striped" id="myTable">
+              <thead>
+              <tr>
+                <th>AMOUNT</th>
+                <th>LEVEL</th>
+                <th>SESSION</th>
+                <th>DEPARTMENT</th>
+                <th>FACULTY</th>
+                <th></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let editpayment of editpayments">
+                <td>{{editpayment.payment}}</td>
+                <td>{{editpayment.level}}</td>
+                <td>{{editpayment.session}}</td>
+                <td>{{editpayment.department}}</td>
+                <td>{{editpayment.faculty}}</td>
+                <td class="edit" (click)="onSetPayment=!onSetPayment;onEdit(editpayment.id, editpayment.course, editpayment.coursecode, editpayment.unitload, editpayment.department,editpayment.faculty); editEdit=!editEdit">
+                  <label class="label label-primary" style="color:#fff">
+                  edit</label></td>
+                <td class="delete" (click)="onDelete(editpayment.id, editpayment.level,editpayment.session,editpayment.department)"><label class="label label-danger" style="background: red; color:#fff">
+                  delete</label></td>
+              </tr>
+              </tbody>
+            </table>
+        <!--loader-->
+
+      </div>
+      <br>
+      <div *ngIf="!editpayments" style="text-align: center"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;
+	         font-size: 10em"></i>
+      </div>
+      <!--end of loader-->
+      <br><br><br>
+    </div>
+</div>
+

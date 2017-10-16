@@ -1,0 +1,68 @@
+<div class="col-md-12">
+    <div class="alert alert-success" *ngIf="successMessage">{{successMessage}}</div>
+   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="form-group">
+          <label>BOOK TITLE</label>
+          <input type="text" name="title" [(ngModel)]="title" placeholder="BOOK TITLE" class="form-control" required>
+      </div>
+
+     <div class="form-group">
+       <label>AUTHOR</label>
+       <input type="text" name="author" [(ngModel)]="author" placeholder="AUTHOR" class="form-control" required>
+     </div>
+
+     <span *ngIf="!addCategory">
+         <div class="form-group">
+           <label>BOOK CATEGORY</label>
+           <select name="category" [(ngModel)]="category"  class="form-control" required>
+               <option disabled>SELECT CATEGORY </option>
+                 <option *ngFor="let getCat of getCategory">{{getCat.category}}</option>
+           </select>
+           <span class="label label-primary" (click)="addCategory=!addCategory; addCategoryField()">add New</span>
+         </div>
+     </span>
+
+     <!--add new category-->
+     <div class="alert alert-danger" *ngIf="errorMessage1">{{errorMessage1}}</div>
+     <span *ngIf="addCategory">
+         <div class="form-group">
+           <label>BOOK CATEGORY</label>
+           <input type="text" name="category" [(ngModel)]="category" placeholder="ADD CATEGORY" class="form-control" (change)="addCatetory()" required>
+           <span class="label label-primary" (click)="addCategory=!addCategory">Revert</span>
+         </div>
+     </span>
+     <!--end of new category-->
+
+     <span *ngIf="!addSubCategory">
+         <div class="form-group">
+           <label>SUB CATEGORY</label>
+           <select name="sub_category" [(ngModel)]="sub_category"  class="form-control" required>
+             <option disabled>SELECT SUB-CATEGORY</option>
+                 <option  *ngFor="let getSub of getSubCategory">{{getSub.category}}</option>
+           </select>
+           <span class="label label-primary" (click)="addSubCategory=!addSubCategory; addSubField()">Add New</span>
+         </div>
+     </span>
+     <!--add new sub category-->
+     <div class="alert alert-danger" *ngIf="errorMessage2">{{errorMessage2}}</div>
+     <span *ngIf="addSubCategory">
+         <div class="form-group">
+           <label>SUB CATEGORY</label>
+           <input type="text" name="sub_category" [(ngModel)]="sub_category" placeholder="ADD SUB CATEGORY" class="form-control" (change)="addSub()" required>
+           <span class="label label-primary" (click)="addSubCategory=!addSubCategory">REVERT</span>
+         </div>
+     </span>
+     <!--end of new sub category-->
+     <div class="form-group">
+       <label>UPLOAD BOOK</label>
+       <input type="file" name="upload" id="myUpload" [(ngModel)]="upload"  (change)="onAddFile(file.files)" #file>
+         <span *ngIf="selectFileOptionFile">
+             Image Upload progress:<progress value="{{byteResultFile}}" max="100"></progress>{{byteResultFile}}%
+          </span>
+     </div>
+       <button type="submit" class="btn btn-primary" [disabled]="!(f.form.valid) || !submitDisable">
+           <span>Submit</span>
+           <span *ngIf="!(f.form.valid) && selectFileOptionFile"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;font-size: 3em"></i></span>
+       </button>
+   </form>
+</div>

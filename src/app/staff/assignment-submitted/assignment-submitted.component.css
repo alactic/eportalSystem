@@ -1,0 +1,19 @@
+.col-md-12{
+    padding:5%;
+}
+
+.form-group{
+    margin-bottom:10px;
+}
+label{
+    width: 400px;
+}
+.message{
+    padding: 10px;
+    width: 50%;
+}
+.modal_item{
+    width: 100px;
+    float: left;
+    margin-left:30px
+}

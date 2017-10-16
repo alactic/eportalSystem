@@ -1,0 +1,56 @@
+<app-logout></app-logout>
+<div class="section">
+  <div class="row">
+    <div class="navbar navbar-default col-md-2 leftbar">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul>
+            <!--<li id="dp">-->
+            <!--<div id="mydp_pix">-->
+            <!--<img src="assets/img/academic.jpg" width="100%" height="150px" style="border-radius: 20%;" class="myphoto">-->
+            <!--</div>-->
+            <!--</li>-->
+            <span>
+            <a routerLink="./" class="sidemenu"><li>EDIT PROFILE</li></a>
+              <a  (click)="showAssignment=!showAssignment" routerLinkActive="active" class="sidemenu"><li>ASSIGNMENT</li></a>
+                <span *ngIf="showAssignment">
+                     <a routerLink="assignment"  routerLinkActive="active"><li class="submenu">UPLOAD ASSIGNMENT</li></a>
+                     <a routerLink="view_assignment"  routerLinkActive="active"><li class="submenu">VIEW ASSIGNMENT</li></a>
+                     <a routerLink="view_all_submit"  routerLinkActive="active"><li class="submenu">VIEW SUBMITTED ASSIGNMENT</li></a>
+                </span>
+              <a  (click)="showNote=!showNote" routerLinkActive="active" class="sidemenu"><li>LECTURE NOTE</li></a>
+                <span *ngIf="showNote">
+                     <a routerLink="lectureNote"  routerLinkActive="active"><li class="submenu">UPLOAD LECTURE NOTE</li></a>
+                     <a routerLink="view_note"  routerLinkActive="active"><li class="submenu">VIEW LECTURE NOTE</li></a>
+                </span>
+              <!-- <a  routerLink="test"><li>TEST</li></a>
+               <a  routerLink="exam"><li>EXAM</li></a>
+                 <a  routerLink="annoucement"><li>ANNOUCEMENT</li></a>-->
+              <a  routerLink="changePassword" class="sidemenu"><li>CHANGE PASSWORD</li></a>
+              <a  routerLink="/logout" class="sidemenu"><li>LOGOUT</li></a>
+          </span>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </div>    <div class="col-md-10 centerbar">
+    <!--<div class="gallary"></div>-->
+    <div class="row">
+      <div class="col-md-12">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>

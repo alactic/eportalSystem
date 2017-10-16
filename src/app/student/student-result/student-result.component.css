@@ -1,0 +1,15 @@
+form{
+    padding: 15px;
+}
+.row{
+    margin: 0;
+    padding: 0;
+}
+label{
+    padding:10px;
+    margin-top:10px;
+    cursor: pointer;
+}
+.download{
+    width: 8px;
+}

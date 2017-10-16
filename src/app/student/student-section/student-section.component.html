@@ -1,0 +1,65 @@
+<app-backend></app-backend>
+<div class="section">
+    <div class="row">
+        <div class="navbar navbar-default col-md-2 leftbar">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul>
+                        <!--<li id="dp">-->
+                        <!--<div id="mydp_pix">-->
+                        <!--<img *ngIf="userProfileImg" [src]="userProfileImg" width="100%" height="150px" style="border-radius: 10%" class="myphoto">-->
+                        <!--</div>-->
+                        <!--</li>-->
+                        <span>
+                        <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><li>EDIT PROFILE</li></a>
+                          <a  routerLinkActive="active" (click)="showAssignment=!showAssignment"><li>ASSIGNMENT<span style="color:red; font-size: 12px" *ngIf="assignmentStatus">
+                              +new</span></li></a>
+                           <span *ngIf="showAssignment">
+                                   <a routerLink="std_assignment" routerLinkActive="active"><li class="submenu">VIEW ASSIGNMENT</li></a>
+                                   <a routerLink="std_assignment_upload" routerLinkActive="active"><li class="submenu">UPLOAD ASSIGNMENT</li></a>
+                                   <a routerLink="view_all_uploads" routerLinkActive="active"><li class="submenu">VIEW ALL UPLOAD</li></a>
+                           </span>
+                            <!--<a routerLink="std_question" routerLinkActive="active"><li>QUESTION</li></a>-->
+                        <a  routerLink="std_score" routerLinkActive="active"><li>SCORES</li></a>
+                        <!--<a  routerLink="std_result" routerLinkActive="active"><li>RESULT</li></a>-->
+                        <a  routerLink="lectureNote" routerL serve inkActive="active">
+                            <li>LECTURE NOTE<span style="color:red; font-size: 12px" *ngIf="materialStatus">  +new</span></li></a>
+                        <a  routerLinkActive="active" (click)="showfees=!showfees"><li>SCHOOL FEES</li></a>
+                           <span *ngIf="showfees">
+                                   <a routerLink="invoice"><li class="submenu">GENERATE INVOICE</li></a>
+                                   <a routerLink="payFees"><li class="submenu">PAY SCHOOL FEES</li></a>
+                                   <a routerLink="printFees"><li class="submenu">PRINT RECIEPT</li></a>
+                           </span>
+                        <a  routerLinkActive="active" (click)="showCourse=!showCourse"><li>COURSES</li></a>
+                           <span *ngIf="showCourse">
+                                   <a routerLink="registerCourse"><li class="submenu">REGISTER COURSE</li></a>
+                                   <a routerLink="printCourse"><li class="submenu">PRINT COURSE</li></a>
+                           </span>
+                        <a routerLink="changePassword" routerLinkActive="active"><li>CHANGE PASSWORD</li></a>
+                        <a routerLink="/logout"><li  style="border-bottom: 1px #000 solid">LOGOUT</li></a>
+                      </span>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <div class="col-md-10 centerbar">
+            <!--<div class="gallary"></div>-->
+            <div class="row">
+                <div class="col-md-12">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

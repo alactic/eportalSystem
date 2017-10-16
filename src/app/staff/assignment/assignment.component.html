@@ -1,0 +1,90 @@
+<div>
+    <div class="col-md-12">
+      <div *ngIf="errorMessage" class="alart alert-danger message">{{errorMessage}}</div>
+      <div *ngIf="successMessage" class="alart alert-success message">{{successMessage}}</div>
+    <form class="form-inline"  #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="!showlist">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div><label class="label label-primary">LEVEL</label></div>
+                    <select [(ngModel)]="level" name="level" class="form-control"  required>
+                        <option></option>
+                        <option>100</option>
+                        <option>200</option>
+                        <option>300</option>
+                        <option>400</option>
+                        <option>500</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div><label class="label label-primary">SEMESTER</label></div>
+                    <select [(ngModel)]="semester" name="semester" class="form-control" (change)="onselectedSemester()" required>
+                        <option></option>
+                        <option>FIRST SEMESTER</option>
+                        <option>SECOND SEMESTER</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+                <div class="row">
+                    <div class="col-md-3" *ngIf="showFaculty">
+                        <div style="text-align: center" *ngIf="!facultyStatus">
+                            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"  style="text-align: center;color:dodgerblue;font-size: 2em"></i>
+                            <span class="sr-only"></span>
+                        </div>
+                        <div class="form-group faculty" *ngIf="facultyStatus">
+                          <div><label class="label label-primary">FACULTY</label></div>
+                          <select [(ngModel)]="faculty" name="faculty" class="form-control" (change)="onGetFaculty();" required>
+                              <option></option>
+                              <option *ngFor="let editfacu of editfaculty">{{editfacu.facultyName}}</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3"><div style="text-align: center" *ngIf="(!showDept) && facultyStatus">
+                            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"  style="text-align: center;color:dodgerblue;font-size: 2em"></i>
+                            <span class="sr-only"></span>
+                        </div>
+                        <div class="form-group department" *ngIf="showDept">
+                            <div><label class="label label-primary">DEPARTMENT</label></div>
+                            <select [(ngModel)]="department" name="department" class="form-control" (change)="onSelectDept()" required>
+                              <option></option>
+                              <option *ngFor="let editdept of getDepartments">{{editdept.department}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+              <div class="form-group department" *ngIf="showCourse">
+                <div><label class="label label-primary">COURSE</label></div>
+                <select [(ngModel)]="course" name="course" class="form-control" (change)="onselectedCourse()" required>
+                  <option></option>
+                  <option *ngFor="let editborrow of editCourse">{{editborrow.course}}</option>
+                </select>
+              </div><br>
+              <span *ngIf="showUpload">
+                      <div class="form-group">
+                            <div><label class="label label-primary">DATE OF SUBMISSION</label></div>
+                            <input type="date" name="submission" [(ngModel)]="submission" class="form-control" required>
+                      </div><br>
+                      <div class="form-group">
+                          <div *ngIf="showError" class="label label-danger">{{emptyField}}</div>
+                          <div><label class="label label-primary">UPLOAD ASSIGNMENT</label></div>
+                          <input type="file" name="upload" id="upload" [(ngModel)]="upload"  (change)="onAddFile(file.files)" #file>
+                          <span *ngIf="selectFileOptionFile">
+                             Image Upload progress:<progress value="{{byteResultFile}}" max="100"></progress>{{byteResultFile}}%
+                          </span>
+                      </div><br>
+                      <div class="form-group department">
+                            <div><label class="label label-primary">SHORT NOTE if any</label></div>
+                            <textarea type="text" name="note" [(ngModel)]="note" class="form-control" cols="50" rows="10" required>
+                            </textarea>
+                      </div><br>
+                        <button type="submit" class="btn btn-primary" [disabled]="!(f.form.valid) || !submitDisable">
+                           <span>UPLOAD</span>
+                           <span *ngIf="!(f.form.valid) && selectFileOptionFile"><i class="fa fa-spin fa-spinner"  style="text-align: center;color:dodgerblue;font-size: 3em"></i></span>
+                       </button>
+              </span>
+    </form>
+   </div>
+</div>
